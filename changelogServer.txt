@@ -65,5 +65,7 @@ PostgreSQL
 		http://www.hascode.com/2011/09/rest-assured-vs-jersey-test-framework-testing-your-restful-web-services/
 		https://stackoverflow.com/questions/21413738/unit-testing-jersey-restful-services
 
+		mvn -Dtest=TestApp1 test
+
 	* logger:
 		https://www.mkyong.com/logging/log4j-hello-world-example/
