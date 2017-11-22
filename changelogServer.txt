@@ -1,0 +1,69 @@
+MANTA
+Telefono:052620963 - 052622474
+
+Maven
+	export PATH=/mnt-system/local/apache-maven-3.3.9/bin:$PATH
+	export JAVA_HOME=/home/knoppix/local/jdk1.8.0_131
+	mvn jetty:run
+
+	http://localhost:8080/server/rest/inspeccion/add
+
+	{
+		"id": "1",
+	    "contenedor": "ABC001",
+	    "tamano": "T1",
+	    "chasis": "C01",
+	    "placa": "P01",
+	    "cliente": "Cliente 1",
+	    "fecha": "2017-11-03",
+	    "agencia": "A01",
+	    "vapor": "V01",
+	    "destino": "Manta",
+	    "factura": "F01",
+	    "pta_izq": "1",
+	    "pta_der": "1",
+	    "pfi_izq": "1",
+	    "pfi_der": "1",
+	    "ur_izq": "01",
+	    "ur_der": "01",
+	    "le_izq": "01",
+	    "le_der": "01",
+	    "li_izq": "01",
+	    "li_der": "01",
+	    "techo": "01",
+	    "piso": "01",
+	    "est_inf": "01",
+	    "est_int": "01",
+	    "chasis_estado": "01",
+	    "observaciones": "Prueba",
+	    "inspector": "Carlos Pérez"
+	}
+
+PostgreSQL
+	* scripts:
+		createdb cjpqdb
+		psql cjpqdb < /home/knoppix/proyectos/sgs/server/src/main/resources/sql/create.sql
+
+	* Validación:
+		https://www.codenameone.com/blog/validation-regex-masking.html
+		
+	* JSON WS:
+		https://groups.google.com/forum/#!topic/codenameone-discussions/tGPeQrNRO58
+		https://stackoverflow.com/questions/38427137/how-to-make-json-put-request-through-codename-one-api
+		https://stackoverflow.com/questions/39063909/how-to-post-json-to-a-rest-webservice-in-codenameone
+		https://www.codenameone.com/how-do-i---connect-to-a-web-service.html
+		http://sjhannah.com/blog/2013/01/24/4-ways-to-consume-json-web-services-in-codename-one/
+		http://www.amalhichri.net/codename-one-connecting-to-mysql-database-and-perfoming-basic-cruds/
+
+	* servidor:
+		http://www.javasavvy.com/rest-jersey-maven-json-tutorial/
+		http://www.vogella.com/tutorials/REST/article.html
+		https://www.mkyong.com/webservices/jax-rs/json-example-with-jersey-jackson/
+		http://www.java4s.com/web-services/restful-web-service-jax-rs-json-example-using-jersey/
+
+	* test:
+		http://www.hascode.com/2011/09/rest-assured-vs-jersey-test-framework-testing-your-restful-web-services/
+		https://stackoverflow.com/questions/21413738/unit-testing-jersey-restful-services
+
+	* logger:
+		https://www.mkyong.com/logging/log4j-hello-world-example/

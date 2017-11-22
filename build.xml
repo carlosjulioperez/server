@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<project name="server" default="zip">
+
+	<property name="dist.dir" 				value="../dist" />
+	<property name="target.dir" 			value="target" />
+    
+    <tstamp>
+		<format property="fecha" pattern="yyyy.MM.dd-HH.mm.ss" locale="es,EC"/>
+	</tstamp>
+	<property name="zip.file" value="${dist.dir}/${ant.project.name}-${fecha}-src.zip" />
+
+	<target name="zip" 
+		description="Comprime el proyecto en la carpeta de distribucion dist especificada. Se ignoran las librerias y las clases compiladas">
+		<zip destfile="${zip.file}">
+			<fileset dir="." excludes="${target.dir}/**" />
+		</zip>
+	</target>
+
+</project>
+
