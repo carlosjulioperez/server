@@ -38,8 +38,18 @@ Maven
 
 PostgreSQL
 	* scripts:
-		createdb cjpqdb
-		psql cjpqdb < /home/knoppix/proyectos/sgs/server/src/main/resources/sql/create.sql
+
+		# sudo vim /etc/postgresql/9.6/main/pg_hba.conf 
+		local   all             sgs md5 
+		# sudo /etc/init.d/postgresql restart
+
+		# sudo su postgres
+		# createdb container
+		# psql
+		CREATE USER sgs WITH PASSWORD 'sgs';
+
+		# psql -U sgs container < /home/knoppix/proyectos/sgs/server/src/main/resources/sql/create.sql
+		# psql -d container -U sgs
 
 	* Validación:
 		https://www.codenameone.com/blog/validation-regex-masking.html
@@ -57,6 +67,9 @@ PostgreSQL
 		http://www.vogella.com/tutorials/REST/article.html
 		https://www.mkyong.com/webservices/jax-rs/json-example-with-jersey-jackson/
 		http://www.java4s.com/web-services/restful-web-service-jax-rs-json-example-using-jersey/
+
+	* Postgres:
+		https://www.mkyong.com/jdbc/jdbc-transaction-example/
 
 	* test:
 		http://www.hascode.com/2011/09/rest-assured-vs-jersey-test-framework-testing-your-restful-web-services/
