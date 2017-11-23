@@ -19,7 +19,7 @@ public class JDBCConnection{
 
 	final static Logger logger = Logger.getLogger(JDBCConnection.class);
 
-    private static Connection getDBConnection() {
+    public static Connection getDBConnection() {
         
         Map<String, String> config = Configuracion.toMap();
 
