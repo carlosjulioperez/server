@@ -1,6 +1,7 @@
 package ec.cjpq.server.rest.service;
 
 import ec.cjpq.server.rest.bean.InspeccionBean;
+import ec.cjpq.server.rest.dao.InspeccionDao;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -28,11 +29,16 @@ public class InspeccionService{
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public InspeccionBean add(InspeccionBean inspeccion){
+    public InspeccionBean add(InspeccionBean inspeccion){
 
-        logger.info(inspeccion.toString());
-        
-		return inspeccion;
-	}
+        try{
+            new InspeccionDao().create(inspeccion);
+            //logger.info(inspeccion.toString());
+        } catch (Exception e) {
+            logger.info( e.getMessage() );
+        }
+
+        return inspeccion;
+    }
 
 }

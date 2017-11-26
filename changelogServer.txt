@@ -46,9 +46,12 @@ PostgreSQL
 		# sudo su postgres
 		# createdb container
 		# psql
+		
 		CREATE USER sgs WITH PASSWORD 'sgs';
+		CREATE DATABASE container OWNER sgs;
 
 		# psql -U sgs container < /home/knoppix/proyectos/sgs/server/src/main/resources/sql/create.sql
+		# psql91 -U sgs container < /Users/carper/local/projects/sgs/server/src/main/resources/sql/create.sql
 		# psql -d container -U sgs
 
 	* Validación:
@@ -76,6 +79,9 @@ PostgreSQL
 		https://stackoverflow.com/questions/21413738/unit-testing-jersey-restful-services
 
 		mvn -Dtest=TestApp1 test
+		mvn -Dtest=TestCircle#xyz test
+		
+		mvn test -Dtest=ec.cjpq.server.rest.dao.InspeccionDaoTest
 
 	* logger:
 		https://www.mkyong.com/logging/log4j-hello-world-example/
