@@ -40,19 +40,30 @@ PostgreSQL
 	* scripts:
 
 		# sudo vim /etc/postgresql/9.6/main/pg_hba.conf 
-		local   all             sgs md5 
-		# sudo /etc/init.d/postgresql restart
+			#local   all             all                                     peer
+			local   all             sgs md5 
+		# $udo /etc/init.d/postgresql restart
 
-		# sudo su postgres
-		# createdb container
+		+ En el servidor:
+		#local   all             all                                     peer
+		#2017-11-28 modificado por carper 
+		local   all             all                                     md5
+
+		# su postgres
 		# psql
 		
 		CREATE USER sgs WITH PASSWORD 'sgs';
 		CREATE DATABASE container OWNER sgs;
+		\q
 
 		# psql -U sgs container < /home/knoppix/proyectos/sgs/server/src/main/resources/sql/create.sql
+		# psql -U sgs container < ./create.sql
+
 		# psql91 -U sgs container < /Users/carper/local/projects/sgs/server/src/main/resources/sql/create.sql
 		# psql -d container -U sgs
+
+		+ Foreign keys:
+			https://stackoverflow.com/questions/28558920/postgresql-foreign-key-syntax
 
 	* Validación:
 		https://www.codenameone.com/blog/validation-regex-masking.html
