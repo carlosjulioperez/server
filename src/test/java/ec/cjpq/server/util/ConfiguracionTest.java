@@ -12,6 +12,7 @@ public class ConfiguracionTest{
         
         Map values = Configuracion.toMap();
         System.out.println(values.get("dbDriver"));
+        System.out.println(values.get("dateFormat"));
 
     }
 }

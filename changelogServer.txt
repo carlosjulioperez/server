@@ -93,6 +93,7 @@ PostgreSQL
 		mvn -Dtest=TestCircle#xyz test
 		
 		mvn test -Dtest=ec.cjpq.server.rest.dao.InspeccionDaoTest
+		mvn test -Dtest=ec.cjpq.server.rest.util.ConfiguracionTest
 
 	* logger:
 		https://www.mkyong.com/logging/log4j-hello-world-example/

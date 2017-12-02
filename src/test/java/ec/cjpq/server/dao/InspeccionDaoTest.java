@@ -69,6 +69,8 @@ public class InspeccionDaoTest{
                 System.out.println(inspeccion.getId() + " " +
                         inspeccion.getContenedor() + " " +
                         inspeccion.getCliente() );
+
+                System.out.println(inspeccion.getFecha());
             }
 
         }catch (Exception e){

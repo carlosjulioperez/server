@@ -10,12 +10,10 @@ import java.util.Properties;
  * @author carper
  * 2017-08-28, 31
  * 2017-09-07
+ * 2017-12-02 Formato de fecha
  */ 
 public class Configuracion{ 
-	private static String dbDriver;
-	private static String dbURL;
-	private static String dbUsername;
-	private static String dbPassword;
+	private static String[] arreglo;
 
     // Crear un objeto de Configuracion
     public static Configuracion instancia = new Configuracion();
@@ -29,13 +27,16 @@ public class Configuracion{
     private Configuracion(){
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		try(InputStream resourceStream = loader.getResourceAsStream("config.properties")) {
-        	Properties propiedades = new Properties();
-			propiedades.load(resourceStream);
+        	Properties prop = new Properties();
+			prop.load(resourceStream);
 
-			dbDriver   = propiedades.getProperty("DB_DRIVER");
-			dbURL      = propiedades.getProperty("DB_URL");
-			dbUsername = propiedades.getProperty("DB_USERNAME");
-			dbPassword = propiedades.getProperty("DB_PASSWORD");
+            arreglo = new String[] {
+                prop.getProperty("DB_DRIVER"),
+                prop.getProperty("DB_URL"),
+                prop.getProperty("DB_USERNAME"),
+                prop.getProperty("DB_PASSWORD"),
+                prop.getProperty("FORMAT_DATE")
+            };
  
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,10 +45,12 @@ public class Configuracion{
 
     public static Map toMap(){
         Map<String, Object> obj = new HashMap<>();
-        obj.put("dbDriver"   , dbDriver  );
-        obj.put("dbURL"      , dbURL     );
-        obj.put("dbUsername" , dbUsername);
-        obj.put("dbPassword" , dbPassword);
+        obj.put("dbDriver"   , arreglo[0]);
+        obj.put("dbURL"      , arreglo[1]);
+        obj.put("dbUsername" , arreglo[2]);
+        obj.put("dbPassword" , arreglo[3]);
+        obj.put("dateFormat" , arreglo[4]);
+
         return obj;
     }
 }

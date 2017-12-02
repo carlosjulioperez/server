@@ -2,6 +2,7 @@ package ec.cjpq.server.rest.dao;
 
 import ec.cjpq.server.rest.bean.InspeccionBean;
 import ec.cjpq.server.rest.jdbc.JDBCConnection;
+import ec.cjpq.server.rest.util.Configuracion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 
@@ -25,6 +27,11 @@ import org.apache.log4j.Logger;
 public class InspeccionDao{
 	
     final static Logger logger = Logger.getLogger(InspeccionDao.class);
+    private Map<String,String> config;
+
+    public InspeccionDao(){
+        config = Configuracion.toMap();
+    }
 
     public Long create(InspeccionBean inspeccion) throws SQLException {
 
@@ -56,7 +63,7 @@ public class InspeccionDao{
 
             ps = dbConnection.prepareStatement( sb.toString() );
 
-            SimpleDateFormat format = new SimpleDateFormat( "yyyy/MM/dd" );
+            SimpleDateFormat format = new SimpleDateFormat( config.get("dateFormat") );
             java.util.Date myDate = format.parse( inspeccion.getFecha() );  // Notice the ".util." of package name.
             java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
             
@@ -125,13 +132,16 @@ public class InspeccionDao{
             ps = dbConnection.prepareStatement( selectSQL );
             ps.setString (1, "%" + value + "%");
 
+            SimpleDateFormat df = new SimpleDateFormat( config.get("dateFormat") );
+            //String text = df.format(date); 
+            
             ResultSet rs = ps.executeQuery();
             while (rs.next() ){
                 InspeccionBean ib = new InspeccionBean();
                 ib.setId            ("" + rs.getInt("id")); 
                 ib.setContenedor    (rs.getString("contenedor"));
                 ib.setCliente       (rs.getString("cliente"));
-                //ib.setFecha         (rs.getDate("fecha"));
+                ib.setFecha         ( df.format (rs.getDate("fecha")) );
                 result.add(ib);
             }
             dbConnection.commit();
