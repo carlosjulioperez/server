@@ -2,9 +2,17 @@ package ec.cjpq.server.rest.dao;
 
 import org.junit.Test;
 
+import java.util.List;
+
 import ec.cjpq.server.rest.bean.InspeccionBean;
 import ec.cjpq.server.rest.dao.InspeccionDao;
 
+/**
+ * Clase JUnit de Inspeccion
+ * @author carper
+ * 2017.12.01
+ * 
+ */
 public class InspeccionDaoTest{
 
     private InspeccionBean getInspeccion(){
@@ -42,11 +50,26 @@ public class InspeccionDaoTest{
         return inspeccion;
     }
 
-    @Test
+    //@Test
     public void testCreate(){
         try{
             Long secuencial = new InspeccionDao().create(getInspeccion());
             System.out.println(secuencial);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    @Test 
+    public void testFindByField(){
+        try{
+            //List<InspeccionBean> result = new InspeccionDao().findByField("cliente", "JE");
+            List<InspeccionBean> result = new InspeccionDao().findByField("contenedor", "AW");
+            for (InspeccionBean inspeccion: result){
+                System.out.println(inspeccion.getId() + " " +
+                        inspeccion.getContenedor() + " " +
+                        inspeccion.getCliente() );
+            }
 
         }catch (Exception e){
             e.printStackTrace();

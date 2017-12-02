@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -16,6 +18,7 @@ import org.apache.log4j.Logger;
  * Clase DAO para entidad Inspeccion
  * @author carper
  * 2017-11-22
+ * 2017-12-01 findByContenedor
  * https://www.mkyong.com/jdbc/jdbc-transaction-example/
  * https://stackoverflow.com/questions/241003/how-to-get-a-value-from-the-last-inserted-row
  */ 
@@ -104,5 +107,44 @@ public class InspeccionDao{
         }
         
         return secuencial;
+    }
+
+    public List<InspeccionBean> findByField(String field, String value) throws SQLException {
+        List <InspeccionBean>result = new ArrayList<InspeccionBean>();
+		
+        Connection dbConnection = null;
+		PreparedStatement ps = null;
+
+        //String selectSQL = "SELECT id, contenedor, cliente, fecha FROM inspeccion WHERE ? LIKE ?"; // 'WB%'
+        String selectSQL = String.format("SELECT id, contenedor, cliente, fecha FROM inspeccion WHERE %s LIKE ?", field);
+
+        try{
+            dbConnection = JDBCConnection.getDBConnection();
+		    dbConnection.setAutoCommit(false);
+
+            ps = dbConnection.prepareStatement( selectSQL );
+            ps.setString (1, "%" + value + "%");
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next() ){
+                InspeccionBean ib = new InspeccionBean();
+                ib.setId            ("" + rs.getInt("id")); 
+                ib.setContenedor    (rs.getString("contenedor"));
+                ib.setCliente       (rs.getString("cliente"));
+                //ib.setFecha         (rs.getDate("fecha"));
+                result.add(ib);
+            }
+            dbConnection.commit();
+
+        } catch (Exception e) {
+            logger.info( e.getMessage() );
+            dbConnection.rollback();
+        } finally {
+            if (ps != null) 
+                ps.close();
+            if (dbConnection != null)
+                dbConnection.close();
+        }
+        return result;
     }
 }

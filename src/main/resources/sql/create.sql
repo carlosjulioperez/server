@@ -33,7 +33,8 @@ CREATE TABLE inspeccion(
     est_int             boolean, --estructura interna
     chasis_estado       boolean,
     observaciones       varchar(100),
-    inspector           varchar(30)
+    inspector           varchar(30),
+    cerrado             boolean
 );
 
 CREATE TABLE control_embarque(

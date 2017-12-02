@@ -96,3 +96,7 @@ PostgreSQL
 
 	* logger:
 		https://www.mkyong.com/logging/log4j-hello-world-example/
+
+	* cn1:
+		Consulta, listas y botones
+		https://www.codenameone.com/how-do-i---create-a-list-of-items-the-easy-way.html
