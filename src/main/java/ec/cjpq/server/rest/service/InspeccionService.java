@@ -11,6 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -41,5 +43,20 @@ public class InspeccionService{
 
         return inspeccion;
     }
+   
+	@POST
+	@Path("/list/{field}/{value}")
+	@Produces(MediaType.APPLICATION_JSON)
+    public List<InspeccionBean> toList(
+            @PathParam("field") String field, 
+            @PathParam("value") String value){
+        List<InspeccionBean> result = null;
+        try{
+            result = new InspeccionDao().findByField(field, value);
+        } catch (Exception e) {
+            logger.info( e.getMessage() );
+        }
 
+        return result;
+    }
 }

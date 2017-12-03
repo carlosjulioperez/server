@@ -63,8 +63,8 @@ public class InspeccionDao{
 
             ps = dbConnection.prepareStatement( sb.toString() );
 
-            SimpleDateFormat format = new SimpleDateFormat( config.get("dateFormat") );
-            java.util.Date myDate = format.parse( inspeccion.getFecha() );  // Notice the ".util." of package name.
+            SimpleDateFormat sdf = new SimpleDateFormat( config.get("dateFormat") );
+            java.util.Date myDate = sdf.parse( inspeccion.getFecha() );  // Notice the ".util." of package name.
             java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
             
             ps.setString ( 1, inspeccion.getContenedor());
@@ -132,7 +132,7 @@ public class InspeccionDao{
             ps = dbConnection.prepareStatement( selectSQL );
             ps.setString (1, "%" + value + "%");
 
-            SimpleDateFormat df = new SimpleDateFormat( config.get("dateFormat") );
+            SimpleDateFormat sdf = new SimpleDateFormat( config.get("dateFormat") );
             //String text = df.format(date); 
             
             ResultSet rs = ps.executeQuery();
@@ -141,7 +141,7 @@ public class InspeccionDao{
                 ib.setId            ("" + rs.getInt("id")); 
                 ib.setContenedor    (rs.getString("contenedor"));
                 ib.setCliente       (rs.getString("cliente"));
-                ib.setFecha         ( df.format (rs.getDate("fecha")) );
+                ib.setFecha         (sdf.format (rs.getDate("fecha")));
                 result.add(ib);
             }
             dbConnection.commit();

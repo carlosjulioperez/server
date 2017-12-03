@@ -68,9 +68,8 @@ public class InspeccionDaoTest{
             for (InspeccionBean inspeccion: result){
                 System.out.println(inspeccion.getId() + " " +
                         inspeccion.getContenedor() + " " +
-                        inspeccion.getCliente() );
-
-                System.out.println(inspeccion.getFecha());
+                        inspeccion.getCliente() + " " +
+                        inspeccion.getFecha() );
             }
 
         }catch (Exception e){

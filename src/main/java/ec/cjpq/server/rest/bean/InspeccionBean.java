@@ -6,6 +6,7 @@ import lombok.Data;
  * Inspección JavaBean
  * @author carper CARLOS JULIO PEREZ QUIZHPE carlosjulioperez@gmail.com claro 099 3208265
  * 2017-11-03
+ * 2017-12-02 Ecxluir nulos del archivo JSON
  */
 @Data
 public class InspeccionBean{
