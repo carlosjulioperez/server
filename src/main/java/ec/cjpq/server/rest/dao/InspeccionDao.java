@@ -157,4 +157,43 @@ public class InspeccionDao{
         }
         return result;
     }
+
+    public InspeccionBean findById(Integer value) throws SQLException {
+        InspeccionBean result = new InspeccionBean();
+		
+        Connection dbConnection = null;
+		PreparedStatement ps = null;
+
+        String selectSQL = "SELECT * FROM inspeccion WHERE id = ?";
+
+        try{
+            dbConnection = JDBCConnection.getDBConnection();
+		    dbConnection.setAutoCommit(false);
+
+            ps = dbConnection.prepareStatement( selectSQL );
+            ps.setInt (1, value);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() ){
+                result = new InspeccionBean();
+                result.setId            ("" + rs.getInt("id")); 
+                result.setContenedor    (rs.getString("contenedor"));
+                result.setAgencia       (rs.getString("agencia")); 
+                result.setVapor         (rs.getString("vapor")); 
+                result.setDestino       (rs.getString("destino")); 
+                result.setFactura       (rs.getString("factura")); 
+            }
+            dbConnection.commit();
+
+        } catch (Exception e) {
+            logger.info( e.getMessage() );
+            dbConnection.rollback();
+        } finally {
+            if (ps != null) 
+                ps.close();
+            if (dbConnection != null)
+                dbConnection.close();
+        }
+        return result;
+    }
 }

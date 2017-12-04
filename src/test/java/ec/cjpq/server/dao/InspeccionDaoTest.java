@@ -11,7 +11,7 @@ import ec.cjpq.server.rest.dao.InspeccionDao;
  * Clase JUnit de Inspeccion
  * @author carper
  * 2017.12.01
- * 
+ * 2017.12.04
  */
 public class InspeccionDaoTest{
 
@@ -60,7 +60,7 @@ public class InspeccionDaoTest{
             e.printStackTrace();
         }
     }
-    @Test 
+    //@Test 
     public void testFindByField(){
         try{
             //List<InspeccionBean> result = new InspeccionDao().findByField("cliente", "JE");
@@ -71,6 +71,17 @@ public class InspeccionDaoTest{
                         inspeccion.getCliente() + " " +
                         inspeccion.getFecha() );
             }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    
+    @Test 
+    public void testFindById(){
+        try{
+            InspeccionBean result = new InspeccionDao().findById(1001);
+            System.out.println(result.toString());
 
         }catch (Exception e){
             e.printStackTrace();
