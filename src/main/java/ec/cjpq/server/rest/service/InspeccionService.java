@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
  * Inspección JavaBean
  * @author carper CARLOS JULIO PEREZ QUIZHPE carlosjulioperez@gmail.com claro 099 3208265
  * 2017-11-03, 26
+ * 2017-12-04
  *
  * http://www.javasavvy.com/rest-jersey-maven-json-tutorial/
  */
@@ -53,6 +54,20 @@ public class InspeccionService{
         List<InspeccionBean> result = null;
         try{
             result = new InspeccionDao().findByField(field, value);
+        } catch (Exception e) {
+            logger.info( e.getMessage() );
+        }
+
+        return result;
+    }
+	
+    @POST
+	@Path("/get/{value}")
+	@Produces(MediaType.APPLICATION_JSON)
+    public InspeccionBean get(@PathParam("value") Integer value){
+        InspeccionBean result = null;
+        try{
+            result = new InspeccionDao().findById(value);
         } catch (Exception e) {
             logger.info( e.getMessage() );
         }
