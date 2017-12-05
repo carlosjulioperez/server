@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
  * @author carper
  * 2017-11-22
  * 2017-12-01 findByContenedor
+ * 2017-12-04
  * https://www.mkyong.com/jdbc/jdbc-transaction-example/
  * https://stackoverflow.com/questions/241003/how-to-get-a-value-from-the-last-inserted-row
  */ 
@@ -31,6 +32,26 @@ public class InspeccionDao{
 
     public InspeccionDao(){
         config = Configuracion.toMap();
+    }
+
+    private InspeccionBean getInspeccionBean(ResultSet rs){
+
+        InspeccionBean obj = new InspeccionBean();
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat( config.get("dateFormat") );
+
+            obj.setId            ("" + rs.getInt("id")); 
+            obj.setContenedor    (rs.getString("contenedor"));
+            obj.setCliente       (rs.getString("cliente"));
+            obj.setFecha         (sdf.format (rs.getDate("fecha")));
+            obj.setAgencia       (rs.getString("agencia")); 
+            obj.setVapor         (rs.getString("vapor")); 
+            obj.setDestino       (rs.getString("destino")); 
+            obj.setFactura       (rs.getString("factura")); 
+        } catch (Exception e) {
+            logger.info( e.getMessage() );
+        }
+        return obj;
     }
 
     public Long create(InspeccionBean inspeccion) throws SQLException {
@@ -123,7 +144,7 @@ public class InspeccionDao{
 		PreparedStatement ps = null;
 
         //String selectSQL = "SELECT id, contenedor, cliente, fecha FROM inspeccion WHERE ? LIKE ?"; // 'WB%'
-        String selectSQL = String.format("SELECT id, contenedor, cliente, fecha FROM inspeccion WHERE %s LIKE ?", field);
+        String selectSQL = String.format("SELECT id, contenedor, cliente, fecha, agencia, vapor, destino, factura FROM inspeccion WHERE %s LIKE ? ORDER BY %s", field, field); 
 
         try{
             dbConnection = JDBCConnection.getDBConnection();
@@ -132,17 +153,11 @@ public class InspeccionDao{
             ps = dbConnection.prepareStatement( selectSQL );
             ps.setString (1, "%" + value + "%");
 
-            SimpleDateFormat sdf = new SimpleDateFormat( config.get("dateFormat") );
             //String text = df.format(date); 
             
             ResultSet rs = ps.executeQuery();
-            while (rs.next() ){
-                InspeccionBean ib = new InspeccionBean();
-                ib.setId            ("" + rs.getInt("id")); 
-                ib.setContenedor    (rs.getString("contenedor"));
-                ib.setCliente       (rs.getString("cliente"));
-                ib.setFecha         (sdf.format (rs.getDate("fecha")));
-                result.add(ib);
+            while (rs.next()){
+                result.add( getInspeccionBean(rs) );
             }
             dbConnection.commit();
 
@@ -175,13 +190,7 @@ public class InspeccionDao{
 
             ResultSet rs = ps.executeQuery();
             if (rs.next() ){
-                result = new InspeccionBean();
-                result.setId            ("" + rs.getInt("id")); 
-                result.setContenedor    (rs.getString("contenedor"));
-                result.setAgencia       (rs.getString("agencia")); 
-                result.setVapor         (rs.getString("vapor")); 
-                result.setDestino       (rs.getString("destino")); 
-                result.setFactura       (rs.getString("factura")); 
+                result = getInspeccionBean(rs);
             }
             dbConnection.commit();
 

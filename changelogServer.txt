@@ -39,6 +39,8 @@ Maven
 	http://localhost:8080/server/rest/inspeccion/list/contenedor/AW
 
 {root=[{id=215, contenedor=SAWC2693791, cliente=MILLI MCELRATH, fecha=2017/02/13}, {id=273, contenedor=JAWS2845915, cliente=TITOS LANDMAN, fecha=2017/05/27}, {id=391, contenedor=AWHQ7862865, cliente=ELGA GREVE, fecha=2017/03/26}, {id=549, contenedor=HRAW4651291, cliente=OPHELIA SOUNESS, fecha=2017/08/05}, {id=654, contenedor=NIAW6728722, cliente=FRANNY ENRIC, fecha=2017/10/06}, {id=874, contenedor=LGAW7740451, cliente=WOLFIE MCRUVIE, fecha=2017/07/18}, {id=884, contenedor=AWZV1292407, cliente=NANETE IGONET, fecha=2017/03/02}]}
+	
+	http://localhost:8080/server/rest/inspeccion/get/1001
 
 PostgreSQL
 	* scripts:

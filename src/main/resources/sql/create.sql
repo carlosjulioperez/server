@@ -40,9 +40,9 @@ CREATE TABLE inspeccion(
 CREATE TABLE control_embarque(
     id                  SERIAL PRIMARY KEY,
     inspeccion_id       integer REFERENCES inspeccion,
-    oin                 varchar(100),
-    consignatario       varchar(100),
-    cantidad_cajas      varchar(100),
+    oin                 varchar(50),
+    consignatario       varchar(50),
+    cantidad_cajas      varchar(50),
     sello_sgs           varchar(50),
     sello_agencia       varchar(50),
     sello_exportador    varchar(50),
