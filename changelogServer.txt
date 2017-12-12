@@ -116,3 +116,4 @@ PostgreSQL
 
 		+ Tablas:
 		https://www.codenameone.com/blog/understanding-the-table-component.html
+		https://www.codenameone.com/blog/tip-select-table-row.html
