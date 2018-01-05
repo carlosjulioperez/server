@@ -1,5 +1,6 @@
 Maven
 	export PATH=/mnt-system/local/apache-maven-3.3.9/bin:$PATH
+	export PATH=/home/carper/local/apache-maven-3.3.9/bin:$PATH
 	export JAVA_HOME=/home/knoppix/local/jdk1.8.0_131
 	mvn jetty:run
 
@@ -62,10 +63,11 @@ PostgreSQL
 		CREATE DATABASE container OWNER sgs;
 		\q
 
+		# psql -U sgs container < /home/carper/local/projects/sgs/server/src/main/resources/sql/create.sql
 		# psql -U sgs container < /home/knoppix/proyectos/sgs/server/src/main/resources/sql/create.sql
 		# psql -U sgs container < ./create.sql
-
 		# psql91 -U sgs container < /Users/carper/local/projects/sgs/server/src/main/resources/sql/create.sql
+
 		# psql -d container -U sgs
 
 		+ Foreign keys:
