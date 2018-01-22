@@ -102,6 +102,7 @@ PostgreSQL
 		
 		mvn test -Dtest=ec.cjpq.server.rest.dao.InspeccionDaoTest
 		mvn test -Dtest=ec.cjpq.server.rest.util.ConfiguracionTest
+		mvn test -Dtest=ec.cjpq.server.rest.model.entity.AppTest
 
 	* logger:
 		https://www.mkyong.com/logging/log4j-hello-world-example/
@@ -119,3 +120,6 @@ PostgreSQL
 		+ Tablas:
 		https://www.codenameone.com/blog/understanding-the-table-component.html
 		https://www.codenameone.com/blog/tip-select-table-row.html
+
+	* tomcat:
+		ln -s /home/carper/local/projects/sgs/server/target/server /home/carper/local/tomcat/webapps
