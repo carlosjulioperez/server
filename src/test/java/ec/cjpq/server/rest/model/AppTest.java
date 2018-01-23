@@ -16,16 +16,14 @@ public class AppTest extends TestCase {
 
 	public void testInspeccion() {
 
-		entityManager = Persistence.createEntityManagerFactory("entityManager")
-				.createEntityManager();
-
+		entityManager = Persistence.createEntityManagerFactory("entityManager").createEntityManager();
 		entityManager.getTransaction().begin();
 
 		Inspeccion obj = new Inspeccion();
         obj.setContenedor ( "ABC123" );
         obj.setTamano     ( "40" );
         obj.setChasis     ( "GYE040" );
-        obj.setPlaca      ( "GYE040" );
+        obj.setPlaca      ( "PLACA01" );
 		entityManager.persist(obj);
 
 		entityManager.getTransaction().commit();
