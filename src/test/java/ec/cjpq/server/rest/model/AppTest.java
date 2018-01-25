@@ -1,10 +1,13 @@
 package ec.cjpq.server.rest.model.entity;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 
 import junit.framework.TestCase;
 
+import ec.cjpq.server.rest.model.entity.Cliente;
 import ec.cjpq.server.rest.model.entity.Inspeccion;
 
 /**
@@ -14,7 +17,7 @@ public class AppTest extends TestCase {
 
 	private EntityManager entityManager;
 
-	public void testInspeccion() {
+	public void _testInspeccion() {
 
 		entityManager = Persistence.createEntityManagerFactory("entityManager").createEntityManager();
 		entityManager.getTransaction().begin();
@@ -29,5 +32,18 @@ public class AppTest extends TestCase {
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
+
+    public void testCliente(){
+
+		entityManager = Persistence.createEntityManagerFactory("entityManager").createEntityManager();
+		entityManager.getTransaction().begin();
+		
+        for (Cliente cliente: entityManager.createNamedQuery("Cliente.getAll", Cliente.class).getResultList() ){
+            System.out.println(cliente.getNombre());
+        }
+        
+        entityManager.getTransaction().commit();
+		entityManager.close();
+    }
 }
 

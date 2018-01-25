@@ -64,7 +64,8 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
             <!-- <version>42.1.4</version> -->
-            <version>9.3-1102-jdbc4</version>
+            <!-- <version>9.3-1102-jdbc4</version> -->
+            <version>9.4.1212</version>
 		</dependency>
         
         <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-bundle -->

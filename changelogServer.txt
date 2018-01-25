@@ -92,6 +92,10 @@ PostgreSQL
 
 	* Postgres:
 		https://www.mkyong.com/jdbc/jdbc-transaction-example/
+	
+	* JPA:
+		http://jvmhub.com/2014/10/25/hibernate-and-postgresql-configuration-using-persistence-xml-and-entitymanager/
+		https://stackoverflow.com/questions/9793252/selecting-all-rows-from-a-database-using-jpa-in-websphere
 
 	* test:
 		http://www.hascode.com/2011/09/rest-assured-vs-jersey-test-framework-testing-your-restful-web-services/

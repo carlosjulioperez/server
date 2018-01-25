@@ -5,11 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Cliente.getAll", query="SELECT c FROM Cliente c")          
+})
 public class Cliente{
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Getter @Setter

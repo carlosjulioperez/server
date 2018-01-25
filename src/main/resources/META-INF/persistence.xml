@@ -8,7 +8,7 @@
         <class>ec.cjpq.server.rest.model.entity.Inspeccion</class>
 
 		<properties>
-			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost/container" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/container" />
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
 			<property name="hibernate.connection.username" value="sgs" />
 			<property name="hibernate.connection.password" value="sgs" />
