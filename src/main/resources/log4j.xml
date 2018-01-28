@@ -18,8 +18,8 @@
     </appender>
 	
     <root>
-        <!-- <priority value="WARN"/> -->
-    	<priority value="INFO"/>
+        <priority value="WARN"/> 
+    	<!--<priority value="INFO"/>-->
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </root>

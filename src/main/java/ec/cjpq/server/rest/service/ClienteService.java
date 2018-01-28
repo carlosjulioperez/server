@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 /**
  * Cliente Rest Service
  * @author carper CARLOS JULIO PEREZ QUIZHPE carlosjulioperez@gmail.com claro 099 3208265
- * 2018-ene-24
+ * 2018-ene-24, 28
  *
  * http://www.javasavvy.com/rest-jersey-maven-json-tutorial/
  */
@@ -32,7 +32,7 @@ public class ClienteService{
         try{
             result = new ClienteDao().getAll();
         } catch (Exception e) {
-            logger.info( e.getMessage() );
+            logger.warn( e.getMessage() );
         }
         return result;
     }

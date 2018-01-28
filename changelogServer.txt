@@ -111,6 +111,7 @@ PostgreSQL
 		mvn test -Dtest=ec.cjpq.server.rest.dao.InspeccionDaoTest
 		mvn test -Dtest=ec.cjpq.server.rest.util.ConfiguracionTest
 		mvn test -Dtest=ec.cjpq.server.rest.model.entity.AppTest
+		mvn test -Dtest=ec.cjpq.server.rest.model.dao.EntityDaoTest
 
 	* logger:
 		https://www.mkyong.com/logging/log4j-hello-world-example/
