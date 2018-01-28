@@ -11,7 +11,9 @@ import junit.framework.TestCase;
 
 import ec.cjpq.server.rest.model.entity.AgenciaNaviera;
 import ec.cjpq.server.rest.model.entity.Cliente;
+import ec.cjpq.server.rest.model.entity.Destino;
 import ec.cjpq.server.rest.model.entity.Inspeccion;
+import ec.cjpq.server.rest.model.entity.Usuario;
 
 /**
  * Unit test for simple App.
@@ -45,8 +47,21 @@ public class EntityDaoTest extends TestCase {
             System.out.println(o.getNombre());
         }
     }
+    
     public void testCliente(){
         for (Cliente o: new ClienteDao().getAll() ){
+            System.out.println(o.getNombre());
+        }
+    }
+
+    public void testDestino(){
+        for (Destino o: new DestinoDao().getAll() ){
+            System.out.println(o.getNombre());
+        }
+    }
+
+    public void testUsuario(){
+        for (Usuario o: new UsuarioDao().getAll() ){
             System.out.println(o.getNombre());
         }
     }

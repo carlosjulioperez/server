@@ -14,7 +14,6 @@ import lombok.Setter;
 @Entity
 @NamedQueries({
     @NamedQuery(name="Cliente.getAll", query="SELECT o FROM Cliente o")
-
 })
 public class Cliente{
 
