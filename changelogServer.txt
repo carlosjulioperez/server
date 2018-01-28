@@ -43,6 +43,10 @@ Maven
 	
 	http://localhost:8080/server/rest/inspeccion/get/1001
 
+	+ Listado de clientes:
+	http://localhost:8080/server/rest/cliente/list
+
+
 PostgreSQL
 	* scripts:
 

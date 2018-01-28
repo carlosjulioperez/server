@@ -1,5 +1,6 @@
 package ec.cjpq.server.rest.service;
 
+import ec.cjpq.server.rest.model.dao.ClienteDao;
 import ec.cjpq.server.rest.model.entity.Cliente;
 
 import javax.ws.rs.POST;
@@ -29,11 +30,10 @@ public class ClienteService{
     public List<Cliente> toList(){
         List<Cliente> result = null;
         try{
-            //result = new ClienteDao().findByField(field, value);
+            result = new ClienteDao().getAll();
         } catch (Exception e) {
             logger.info( e.getMessage() );
         }
-
         return result;
     }
 }

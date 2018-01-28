@@ -5,8 +5,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
+import ec.cjpq.server.rest.model.dao.ClienteDao;
 import ec.cjpq.server.rest.model.entity.Cliente;
 import ec.cjpq.server.rest.model.entity.Inspeccion;
 
@@ -34,16 +37,11 @@ public class AppTest extends TestCase {
 	}
 
     public void testCliente(){
-
-		entityManager = Persistence.createEntityManagerFactory("entityManager").createEntityManager();
-		entityManager.getTransaction().begin();
-		
-        for (Cliente cliente: entityManager.createNamedQuery("Cliente.getAll", Cliente.class).getResultList() ){
+        
+        for (Cliente cliente: new ClienteDao().getAll() ){
             System.out.println(cliente.getNombre());
         }
         
-        entityManager.getTransaction().commit();
-		entityManager.close();
     }
 }
 
