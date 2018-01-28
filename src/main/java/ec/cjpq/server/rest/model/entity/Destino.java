@@ -13,7 +13,7 @@ import lombok.Setter;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Destino.getAll", query="SELECT o FROM Destino o")
+    @NamedQuery(name="Destino.getAll", query="SELECT o FROM Destino o ORDER BY o.nombre")
 })
 public class Destino{
 
