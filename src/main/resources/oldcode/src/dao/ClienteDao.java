@@ -2,6 +2,8 @@ package ec.cjpq.server.rest.model.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityTransaction;
+
 import ec.cjpq.server.rest.model.entity.Cliente;
 
 import org.apache.log4j.Logger;
@@ -16,9 +18,21 @@ public class ClienteDao extends EntityDao{
     final static Logger logger = Logger.getLogger(ClienteDao.class);
 
     public List<Cliente>getAll(){
-        em.getTransaction().begin();
-        List<Cliente> result = em.createNamedQuery("Cliente.getAll", Cliente.class).getResultList();
-        em.getTransaction().commit();
+        
+        EntityTransaction tx = em.getTransaction();
+        List<Cliente> result = null;
+
+        try{
+		    tx.begin();
+            result = em.createNamedQuery("Cliente.getAll", Cliente.class).getResultList();
+            tx.commit();
+        }catch (Exception e){
+            tx.rollback();
+            logger.warn( e.getMessage() );
+        }finally {
+            em.close();
+        }
+
         return result;
     }
 }

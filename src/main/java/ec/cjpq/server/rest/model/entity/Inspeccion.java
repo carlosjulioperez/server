@@ -14,13 +14,21 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+//import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import ec.cjpq.server.rest.model.entity.AgenciaNaviera;
 import ec.cjpq.server.rest.model.entity.Cliente;
 import ec.cjpq.server.rest.model.entity.Destino;
 
+/**
+ * Inspeccion Entity
+ * @author carper CARLOS JULIO PEREZ QUIZHPE carlosjulioperez@gmail.com claro 099 3208265
+ * 2018-ene-27
+ */ 
 //http://jvmhub.com/2014/10/25/hibernate-and-postgresql-configuration-using-persistence-xml-and-entitymanager/
 @Entity
 //@Table(name = "inspec")
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Inspeccion{
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @Getter @Setter

@@ -42,6 +42,7 @@ Maven
 {root=[{id=215, contenedor=SAWC2693791, cliente=MILLI MCELRATH, fecha=2017/02/13}, {id=273, contenedor=JAWS2845915, cliente=TITOS LANDMAN, fecha=2017/05/27}, {id=391, contenedor=AWHQ7862865, cliente=ELGA GREVE, fecha=2017/03/26}, {id=549, contenedor=HRAW4651291, cliente=OPHELIA SOUNESS, fecha=2017/08/05}, {id=654, contenedor=NIAW6728722, cliente=FRANNY ENRIC, fecha=2017/10/06}, {id=874, contenedor=LGAW7740451, cliente=WOLFIE MCRUVIE, fecha=2017/07/18}, {id=884, contenedor=AWZV1292407, cliente=NANETE IGONET, fecha=2017/03/02}]}
 	
 	http://localhost:8080/server/rest/inspeccion/get/2
+	curl -X POST -i http://localhost:8080/server/rest/inspeccion/get/2
 
 	+ Listado de agencias navieras:
 	http://localhost:8080/server/rest/agencianaviera/list
@@ -104,6 +105,15 @@ PostgreSQL
 		http://jvmhub.com/2014/10/25/hibernate-and-postgresql-configuration-using-persistence-xml-and-entitymanager/
 		https://stackoverflow.com/questions/9793252/selecting-all-rows-from-a-database-using-jpa-in-websphere
 
+		+ Error:
+		https://stackoverflow.com/questions/41419472/lazyinitializationexception-could-not-initialize-proxy-no-session
+		https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/
+
+		+ LazyInitializer:
+		https://stackoverflow.com/questions/23751083/jackson-json-serialization-of-jpa-entities
+		http://www.greggbolinger.com/ignoring-hibernate-garbage-via-jsonignoreproperties/
+		https://stackoverflow.com/questions/5455014/ignoring-new-fields-on-json-objects-using-jackson
+
 	* test:
 		http://www.hascode.com/2011/09/rest-assured-vs-jersey-test-framework-testing-your-restful-web-services/
 		https://stackoverflow.com/questions/21413738/unit-testing-jersey-restful-services
@@ -135,4 +145,10 @@ PostgreSQL
 		https://www.codenameone.com/blog/tip-select-table-row.html
 
 	* tomcat:
+		https://stackoverflow.com/questions/138948/how-to-get-utf-8-working-in-java-webapps
 		ln -s /home/carper/local/projects/sgs/server/target/server /home/carper/local/tomcat/webapps
+
+Error
+	Estado HTTP 500 - No serializer found for class org.hibernate.proxy.pojo.javassist.JavassistLazyInitializer and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS) ) (through reference chain: ec.cjpq.server.rest.model.entity.Inspeccion["cliente"]->ec.cjpq.server.rest.model.entity.Cliente_$$_jvst386_2["handler"])
+	
+

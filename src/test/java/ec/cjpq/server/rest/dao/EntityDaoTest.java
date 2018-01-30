@@ -7,12 +7,15 @@ import javax.persistence.Persistence;
 
 import java.util.List;
 
+import ec.cjpq.server.rest.model.dto.InspeccionDto;
+
 import ec.cjpq.server.rest.model.entity.AgenciaNaviera;
 import ec.cjpq.server.rest.model.entity.Cliente;
 import ec.cjpq.server.rest.model.entity.Destino;
 import ec.cjpq.server.rest.model.entity.Inspeccion;
 import ec.cjpq.server.rest.model.entity.Usuario;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
@@ -71,8 +74,22 @@ public class EntityDaoTest extends JPAHibernateTest{
     @Test
     public void testFindInspeccion(){
         Inspeccion o = new InspeccionDao().findInspeccion(2);
-        System.out.println( o.getFecha() );
-        System.out.println( o.getCliente().getNombre() );
+
+        try{
+            InspeccionDto iDto = new InspeccionDto();
+            BeanUtils.copyProperties(iDto, o);
+
+            iDto.setClienteId        ( o.getCliente        ( ).getId ( ) );
+            iDto.setAgenciaNavieraId ( o.getAgenciaNaviera ( ).getId ( ) );
+            iDto.setDestinoId        ( o.getDestino        ( ).getId ( ) );
+            iDto.setUsuarioId        ( o.getUsuario        ( ).getId ( ) );
+
+            System.out.println(iDto.toString());
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void _testAgenciaNaviera(){
@@ -80,8 +97,9 @@ public class EntityDaoTest extends JPAHibernateTest{
             System.out.println(o.getNombre());
         }
     }
-    
-    public void _testCliente(){
+
+    @Test
+    public void testCliente(){
         for (Cliente o: new ClienteDao().getAll() ){
             System.out.println(o.getNombre());
         }
