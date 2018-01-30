@@ -2,7 +2,7 @@ Maven
 	export PATH=/mnt-system/local/apache-maven-3.3.9/bin:$PATH
 	export PATH=/home/carper/local/apache-maven-3.3.9/bin:$PATH
 	export JAVA_HOME=/home/knoppix/local/jdk1.8.0_131
-	mvn jetty:run
+	mvn package
 
 	http://localhost:8080/server/rest/inspeccion/add
 

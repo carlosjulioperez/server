@@ -1,6 +1,7 @@
 package ec.cjpq.server.rest.service;
 
 import ec.cjpq.server.rest.model.dao.InspeccionDao;
+import ec.cjpq.server.rest.model.dto.InspeccionDto;
 import ec.cjpq.server.rest.model.entity.Inspeccion;
 
 import javax.ws.rs.Consumes;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import java.util.List;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 
 /**
@@ -44,15 +46,24 @@ public class InspeccionService{
     @POST
 	@Path("/get/{value}")
 	@Produces(MediaType.APPLICATION_JSON)
-    public Inspeccion get(@PathParam("value") Integer value){
-        Inspeccion o = null;
+    public InspeccionDto get(@PathParam("value") Integer value){
+        InspeccionDto iDto = null;
         try{
-            o = new InspeccionDao().findInspeccion(value);
+            Inspeccion o = new InspeccionDao().findInspeccion(value);
+            
+            iDto = new InspeccionDto();
+            BeanUtils.copyProperties(iDto, o);
+
+            iDto.setClienteId        ( o.getCliente        ( ).getId ( ) );
+            iDto.setAgenciaNavieraId ( o.getAgenciaNaviera ( ).getId ( ) );
+            iDto.setDestinoId        ( o.getDestino        ( ).getId ( ) );
+            iDto.setUsuarioId        ( o.getUsuario        ( ).getId ( ) );
+
         } catch (Exception e) {
             logger.info( e.getMessage() );
         }
 
-        return o;
+        return iDto;
     }
 
     /*
